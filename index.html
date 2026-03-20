@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GigShield Sentinel</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div>
+        <h1>GigShield Sentinel</h1>
+        <p>AI-Powered Parametric Insurance for India's Gig Workers</p>
+      </div>
+      <div class="nav-badge">Phase 1 Prototype</div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <section id="home">
+      <div class="hero">
+        <h2>No paperwork. No waiting. Just protection.</h2>
+        <p>GigShield Sentinel automatically detects trigger events — cyclones, pollution spikes, government shutdowns — and pays you instantly. You do not have to do a single thing.</p>
+        <button onclick="showSection('register')">Get Protected Now</button>
+      </div>
+      <div class="stats-row">
+        <div class="stat">
+          <h3>15M+</h3>
+          <p>Gig workers unprotected in India</p>
+        </div>
+        <div class="stat">
+          <h3>20-30%</h3>
+          <p>Monthly income lost per trigger event</p>
+        </div>
+        <div class="stat">
+          <h3>0</h3>
+          <p>Forms to fill for a payout</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="register" class="hidden">
+      <h2>Worker Registration</h2>
+      <p class="subtitle">Takes less than 5 minutes. No documents required.</p>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" />
+      </div>
+      <div class="form-group">
+        <label>Mobile Number</label>
+        <input type="text" id="mobile" placeholder="Enter your mobile number" />
+      </div>
+      <div class="form-group">
+        <label>UPI ID</label>
+        <input type="text" id="upi" placeholder="yourname@upi" />
+      </div>
+      <div class="form-group">
+        <label>Delivery Platform</label>
+        <select id="platform">
+          <option value="">Select your platform</option>
+          <option value="Zomato">Zomato</option>
+          <option value="Swiggy">Swiggy</option>
+          <option value="Zepto">Zepto</option>
+          <option value="Amazon">Amazon</option>
+          <option value="Dunzo">Dunzo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <select id="city">
+          <option value="">Select your city</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Bengaluru">Bengaluru</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Hyderabad">Hyderabad</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Average Weekly Income (Rs.)</label>
+        <input type="number" id="income" placeholder="Enter your average weekly income" />
+      </div>
+      <button onclick="calculatePremium()">Calculate My Premium</button>
+      <p class="back-link" onclick="showSection('home')">Back</p>
+    </section>
+
+    <section id="premium" class="hidden">
+      <h2>Your Weekly Premium</h2>
+      <p class="subtitle">Based on your location, platform, and income profile.</p>
+      <div class="card">
+        <p id="worker-summary"></p>
+      </div>
+      <div class="premium-box">
+        <span>Your Weekly Premium</span>
+        <h3 id="premium-amount"></h3>
+      </div>
+      <div class="card">
+        <p id="coverage-summary"></p>
+      </div>
+      <div class="card highlight">
+        <h4>What you are covered for</h4>
+        <p>Cyclones and extreme rainfall — Severe pollution events — Government shutdowns and bandhs — Flooding — Heatwaves</p>
+      </div>
+      <button onclick="activatePolicy()">Activate My Policy</button>
+      <p class="back-link" onclick="showSection('register')">Back</p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <h2>Your Dashboard</h2>
+      <p class="subtitle">Your policy is active. GigShield Sentinel is watching over your earnings.</p>
+
+      <div class="card green">
+        <div class="card-row">
+          <div>
+            <h4>Policy Status</h4>
+            <p id="policy-status"></p>
+          </div>
+          <div class="badge-active">Active</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Live Trigger Monitor</h4>
+        <p id="trigger-status">Scanning your city for active trigger events...</p>
+        <div id="trigger-result"></div>
+      </div>
+
+      <div class="card">
+        <h4>Coverage Summary</h4>
+        <p id="dashboard-coverage"></p>
+      </div>
+
+      <div class="card">
+        <h4>Claim History</h4>
+        <p id="claim-history">No claims yet. You are fully covered.</p>
+      </div>
+
+      <button onclick="simulateTrigger()">Simulate a Trigger Event</button>
+    </section>
+
+    <section id="processing" class="hidden">
+      <div class="processing-box">
+        <div class="spinner"></div>
+        <h2>Trigger Detected</h2>
+        <p>Validating across multiple data sources...</p>
+        <p id="processing-steps"></p>
+      </div>
+    </section>
+
+    <section id="claim" class="hidden">
+      <h2>Claim Approved and Paid</h2>
+      <p class="subtitle">Everything was handled automatically. No action was required from you.</p>
+
+      <div class="card green">
+        <h4>Trigger Validated</h4>
+        <p id="claim-trigger-detail"></p>
+      </div>
+
+      <div class="card">
+        <h4>Fraud Check Passed</h4>
+        <p id="fraud-check-detail"></p>
+      </div>
+
+      <div class="card">
+        <h4>Claim Details</h4>
+        <p id="claim-detail"></p>
+      </div>
+
+      <div class="card green">
+        <h4>Payout Sent</h4>
+        <p id="payout-detail"></p>
+      </div>
+
+      <button onclick="showSection('dashboard')">Back to Dashboard</button>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>GigShield Sentinel — Guidewire DEVTrails University Hackathon 2026 — Phase 1 Prototype</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
