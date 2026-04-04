@@ -1,8 +1,8 @@
-# GigShield
+# ParaProtect
 ### AI-Powered Parametric Insurance for India's Gig Economy
 
-**Guidewire DEVTrails University Hackathon — Phase 1 Submission**
-Submission Date: March 20, 2026
+**Guidewire DEVTrails University Hackathon — Phase 2 Submission**
+Submission Date: April 4, 2026
 
 ---
 
@@ -16,8 +16,10 @@ Submission Date: March 20, 2026
 6. [AI/ML Integration](#aiml-integration)
 7. [Adversarial Defense and Anti-Spoofing Strategy](#adversarial-defense-and-anti-spoofing-strategy)
 8. [Tech Stack](#tech-stack)
-9. [Development Plan](#development-plan)
-10. [Why GigShield Matters](#why-gigshield-matters)
+9. [How to Run the Application](#how-to-run-the-application)
+10. [Current Implementation Status](#current-implementation-status)
+11. [Development Plan](#development-plan)
+12. [Why ParaProtect Matters](#why-paraprotect-matters)
 
 ---
 
@@ -31,16 +33,30 @@ Natural disasters, extreme pollution events, and government-mandated shutdowns c
 
 ## What We Built
 
-GigShield is a parametric insurance solution built specifically for gig delivery workers in India. It eliminates the traditional paper-based claims process — and the legal burden of proving income loss — replacing it with an AI-enabled, fully automated system.
+ParaProtect is a fully functional web application providing parametric insurance for gig delivery workers in India. It eliminates traditional claims processes through an AI-enabled, automated system that pays out instantly when validated trigger events occur.
 
-Rather than filing documentation and waiting for manual approval after an event occurs, GigShield:
+**Current Implementation Features:**
+- Interactive web interface with modern dark theme UI
+- Real-time premium calculation based on worker profile and risk factors
+- Dynamic risk assessment using city data and platform factors
+- Automated claim simulation with fraud detection checks
+- Dashboard for policy management and claims history
+- Responsive design optimized for mobile and desktop
 
+**Key Functionality:**
+- Worker registration with profile-based premium calculation
+- Real-time monitoring simulation for 5 trigger types (cyclone, pollution, shutdown, flood, heatwave)
+- Instant UPI payout simulation upon validated triggers
+- Policy management (pause, upgrade, cancel)
+- Claims history and premium payment tracking
+
+Rather than filing documentation after an event, ParaProtect:
 - Monitors real-time triggers including weather events, pollution levels, social incidents, and government shutdowns
 - Automatically generates claims upon validated occurrence of an insured trigger
 - Pays out instantly via UPI — no paper claims, no processing delays
 - Calculates and collects premiums on a weekly basis, aligned with how gig workers are actually compensated
 
-GigShield covers lost income only — not vehicles or health — for the duration of a validated trigger event.
+ParaProtect covers lost income only — not vehicles or health — for the duration of a validated trigger event.
 
 ---
 
@@ -297,38 +313,44 @@ Appeal and human review means every rejected claim can be appealed by the worker
 
 ## Tech Stack
 
-### Mobile Application
-- React Native — single codebase deployed to both iOS and Android
-- Supports Hindi, Tamil, Telugu, Kannada, and English
-- Offline-capable onboarding flow for workers in low-connectivity areas
+### Frontend Application
+- **HTML5** — Semantic markup and responsive layout
+- **CSS3** — Modern styling with CSS custom properties, flexbox, grid, and animations
+- **Vanilla JavaScript (ES6+)** — Interactive functionality, DOM manipulation, and application logic
 
-### Backend Services
-- Node.js with Express — core API, policy management, and claims orchestration
-- Python with FastAPI — AI/ML model serving, trigger processing pipeline, and fraud detection engine
-- PostgreSQL — primary relational database for policies, claims, payouts, and worker profiles
-- Redis — real-time trigger state management, event queuing, and session caching
+### Key Features Implemented
+- **Responsive Design** — Mobile-first approach with dark theme UI
+- **Dynamic Premium Calculation** — ML-inspired algorithm using city risk scores, platform factors, and hyper-local adjustments
+- **Real-time Risk Assessment** — Interactive risk meters and zone history visualization
+- **Automated Claim Processing** — Simulated trigger validation with fraud detection checks
+- **Policy Management Dashboard** — Complete user interface for policy lifecycle management
 
-### AI/ML
-- XGBoost — premium calculation model
-- Scikit-learn Isolation Forest — fraud detection and anomaly scoring
-- Hugging Face Transformers — NLP-based trigger validation from news and government feeds
-- Tesseract OCR with custom post-processing — earnings document extraction and verification
+### External Dependencies
+- **Google Fonts** — Syne and DM Sans font families for modern typography
+- **Simulated API Integrations** — Mock implementations for IMD, CPCB, and government feeds
 
-### External Integrations
-- IMD API — weather, cyclone, flood, and heatwave trigger data
-- OpenWeatherMap API — supplementary weather data for multi-source validation
-- CPCB API — real-time AQI and pollution data
-- State government notification feeds and verified news APIs — shutdown and curfew validation
-- Razorpay and UPI — weekly premium collection and instant claim payouts
-- Zomato and Swiggy partner APIs — direct income verification where API access is available
+### Development Environment
+- **VS Code** — Primary development environment
+- **Browser Testing** — Cross-browser compatibility (Chrome, Firefox, Safari, Edge)
+- **Git** — Version control and collaboration
 
-### Infrastructure
-- AWS EC2 — application and API hosting
-- AWS RDS — managed PostgreSQL database
-- AWS S3 — document and image storage for OCR submissions
-- AWS Lambda — serverless trigger event processing
-- Docker — containerised deployment across all services
-- GitHub Actions — CI/CD pipeline for automated testing and deployment
+---
+
+## How to Run the Application
+
+1. **Prerequisites:**
+   - Modern web browser (Chrome, Firefox, Safari, or Edge)
+   - Internet connection for Google Fonts
+
+2. **Running the Application:**
+   - Open `index.html` in your web browser
+   - The application will load and display the home page
+   - Navigate through the registration, premium calculation, and dashboard flows
+
+3. **Testing Features:**
+   - Register a worker profile to see dynamic premium calculation
+   - Simulate trigger events to test automated claim processing
+   - Explore the dashboard for policy management functionality
 
 ---
 
@@ -344,7 +366,51 @@ Appeal and human review means every rejected claim can be appealed by the worker
 
 ---
 
-## Why GigShield Matters
+## Current Implementation Status
+
+**Phase 2 Prototype — Fully Functional Web Application**
+
+This submission represents a complete, working prototype of ParaProtect that demonstrates all core functionality:
+
+✅ **Worker Registration & Onboarding**
+- Profile collection with platform, city, zone, and income details
+- Aadhaar last-4 verification and consent management
+- Dynamic form validation and user experience
+
+✅ **AI-Inspired Premium Calculation**
+- City-based risk scoring (High/Moderate risk levels)
+- Platform factor adjustments (Zomato, Swiggy, Zepto, Amazon, Dunzo)
+- Hyper-local zone adjustments (flood, pollution, bandh history)
+- ML-style premium optimization (part-time discounts, eco-vehicle incentives)
+
+✅ **Interactive Dashboard**
+- Policy status and premium tracking
+- Claims history with payout details
+- Trigger monitoring visualization
+- Policy management (pause, upgrade, cancel)
+
+✅ **Automated Claim Processing**
+- 5 trigger types: Cyclone/Rain, Air Pollution, Govt Shutdown, Flooding, Heatwave
+- Simulated real-time validation with multi-source confirmation
+- Fraud detection checks (GPS triangulation, platform session verification)
+- Instant UPI payout simulation
+
+✅ **Modern Web Interface**
+- Responsive design for mobile and desktop
+- Dark theme with custom CSS variables
+- Smooth animations and transitions
+- Professional UI/UX optimized for gig workers
+
+**Key Technical Achievements:**
+- Zero external dependencies (pure HTML/CSS/JS)
+- Client-side premium calculation engine
+- Simulated API integrations for realistic user experience
+- Comprehensive error handling and validation
+- Mobile-first responsive design
+
+---
+
+## Why ParaProtect Matters
 
 India has over 15 million active gig delivery workers. Not one of them currently has access to income protection that accounts for the unpredictable, event-driven disruptions they face every day. Existing insurance products were not built for this workforce — they require documentation, legal processes, and waiting periods that are completely incompatible with the reality of gig work.
 
