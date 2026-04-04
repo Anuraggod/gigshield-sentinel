@@ -1,188 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GigShield Sentinel</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>ParaProtect — GigShield Sentinel Phase 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <div>
-        <h1>GigShield Sentinel</h1>
-        <p>AI-Powered Parametric Insurance for India's Gig Workers</p>
-      </div>
-      <div class="nav-badge">Phase 1 Prototype</div>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">
+      <span class="l1">Para</span><span class="l2">Protect</span>
+      <span class="ltag">by GigShield Sentinel</span>
     </div>
-  </nav>
+    <div class="nav-links" id="nav-links">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('register')">Register</a>
+      <a href="#" id="nav-dashboard" onclick="showPage('dashboard')" style="display:none">Dashboard</a>
+    </div>
+  </div>
+</nav>
 
-  <div class="container">
-
-    <section id="home">
-      <div class="hero">
-        <h2>No paperwork. No waiting. Just protection.</h2>
-        <p>GigShield Sentinel automatically detects trigger events — cyclones, pollution spikes, government shutdowns — and pays you instantly. You do not have to do a single thing.</p>
-        <button onclick="showSection('register')">Get Protected Now</button>
+<!-- ═══════════════ HOME ═══════════════ -->
+<div id="page-home" class="page">
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-chip">Guidewire DEVTrails 2026 — Phase 2 — Protect Your Worker</div>
+      <h1>Income protection.<br/><span class="gr">Zero paperwork.</span></h1>
+      <p class="hero-p">ParaProtect pays gig delivery workers the moment a validated trigger event — cyclone, pollution spike, government shutdown — stops them from working. Automatic. Instant. Fair.</p>
+      <div class="hero-btns">
+        <button class="btn-p" onclick="showPage('register')">Get Protected Now</button>
+        <button class="btn-g" onclick="showPage('how')">How It Works</button>
       </div>
-      <div class="stats-row">
-        <div class="stat">
-          <h3>15M+</h3>
-          <p>Gig workers unprotected in India</p>
-        </div>
-        <div class="stat">
-          <h3>20-30%</h3>
-          <p>Monthly income lost per trigger event</p>
-        </div>
-        <div class="stat">
-          <h3>0</h3>
-          <p>Forms to fill for a payout</p>
-        </div>
+      <div class="kpis">
+        <div class="kpi"><span class="kn">15M+</span><span class="kl">Gig workers unprotected</span></div>
+        <div class="kdiv"></div>
+        <div class="kpi"><span class="kn">20–30%</span><span class="kl">Monthly income lost per event</span></div>
+        <div class="kdiv"></div>
+        <div class="kpi"><span class="kn">₹0</span><span class="kl">Cost to file a claim</span></div>
+        <div class="kdiv"></div>
+        <div class="kpi"><span class="kn">&lt;5min</span><span class="kl">Time to get covered</span></div>
       </div>
-    </section>
-
-    <section id="register" class="hidden">
-      <h2>Worker Registration</h2>
-      <p class="subtitle">Takes less than 5 minutes. No documents required.</p>
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name" />
-      </div>
-      <div class="form-group">
-        <label>Mobile Number</label>
-        <input type="text" id="mobile" placeholder="Enter your mobile number" />
-      </div>
-      <div class="form-group">
-        <label>UPI ID</label>
-        <input type="text" id="upi" placeholder="yourname@upi" />
-      </div>
-      <div class="form-group">
-        <label>Delivery Platform</label>
-        <select id="platform">
-          <option value="">Select your platform</option>
-          <option value="Zomato">Zomato</option>
-          <option value="Swiggy">Swiggy</option>
-          <option value="Zepto">Zepto</option>
-          <option value="Amazon">Amazon</option>
-          <option value="Dunzo">Dunzo</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>City</label>
-        <select id="city">
-          <option value="">Select your city</option>
-          <option value="Chennai">Chennai</option>
-          <option value="Delhi">Delhi</option>
-          <option value="Bengaluru">Bengaluru</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Hyderabad">Hyderabad</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Average Weekly Income (Rs.)</label>
-        <input type="number" id="income" placeholder="Enter your average weekly income" />
-      </div>
-      <button onclick="calculatePremium()">Calculate My Premium</button>
-      <p class="back-link" onclick="showSection('home')">Back</p>
-    </section>
-
-    <section id="premium" class="hidden">
-      <h2>Your Weekly Premium</h2>
-      <p class="subtitle">Based on your location, platform, and income profile.</p>
-      <div class="card">
-        <p id="worker-summary"></p>
-      </div>
-      <div class="premium-box">
-        <span>Your Weekly Premium</span>
-        <h3 id="premium-amount"></h3>
-      </div>
-      <div class="card">
-        <p id="coverage-summary"></p>
-      </div>
-      <div class="card highlight">
-        <h4>What you are covered for</h4>
-        <p>Cyclones and extreme rainfall — Severe pollution events — Government shutdowns and bandhs — Flooding — Heatwaves</p>
-      </div>
-      <button onclick="activatePolicy()">Activate My Policy</button>
-      <p class="back-link" onclick="showSection('register')">Back</p>
-    </section>
-
-    <section id="dashboard" class="hidden">
-      <h2>Your Dashboard</h2>
-      <p class="subtitle">Your policy is active. GigShield Sentinel is watching over your earnings.</p>
-
-      <div class="card green">
-        <div class="card-row">
-          <div>
-            <h4>Policy Status</h4>
-            <p id="policy-status"></p>
-          </div>
-          <div class="badge-active">Active</div>
+    </div>
+    <div class="ticker-wrap">
+      <span class="ticker-label">LIVE TRIGGER FEED</span>
+      <div class="ticker-scroll">
+        <div class="ticker-track">
+          <span>&#9928; Cyclone Warning — Chennai — IMD Validated — Payout Triggered</span>
+          <span>&#9729; AQI 418 — Delhi — CPCB Validated — Payout Triggered</span>
+          <span>&#128683; Bandh — Bengaluru — Govt Feed Validated — Payout Triggered</span>
+          <span>&#127754; Flood Alert L3 — Mumbai — Satellite Validated — Payout Triggered</span>
+          <span>&#9728; Heatwave 46°C — Hyderabad — IMD Validated — Payout Triggered</span>
+          <span>&#9928; Cyclone Warning — Chennai — IMD Validated — Payout Triggered</span>
+          <span>&#9729; AQI 418 — Delhi — CPCB Validated — Payout Triggered</span>
+          <span>&#128683; Bandh — Bengaluru — Govt Feed Validated — Payout Triggered</span>
         </div>
       </div>
-
-      <div class="card">
-        <h4>Live Trigger Monitor</h4>
-        <p id="trigger-status">Scanning your city for active trigger events...</p>
-        <div id="trigger-result"></div>
-      </div>
-
-      <div class="card">
-        <h4>Coverage Summary</h4>
-        <p id="dashboard-coverage"></p>
-      </div>
-
-      <div class="card">
-        <h4>Claim History</h4>
-        <p id="claim-history">No claims yet. You are fully covered.</p>
-      </div>
-
-      <button onclick="simulateTrigger()">Simulate a Trigger Event</button>
-    </section>
-
-    <section id="processing" class="hidden">
-      <div class="processing-box">
-        <div class="spinner"></div>
-        <h2>Trigger Detected</h2>
-        <p>Validating across multiple data sources...</p>
-        <p id="processing-steps"></p>
-      </div>
-    </section>
-
-    <section id="claim" class="hidden">
-      <h2>Claim Approved and Paid</h2>
-      <p class="subtitle">Everything was handled automatically. No action was required from you.</p>
-
-      <div class="card green">
-        <h4>Trigger Validated</h4>
-        <p id="claim-trigger-detail"></p>
-      </div>
-
-      <div class="card">
-        <h4>Fraud Check Passed</h4>
-        <p id="fraud-check-detail"></p>
-      </div>
-
-      <div class="card">
-        <h4>Claim Details</h4>
-        <p id="claim-detail"></p>
-      </div>
-
-      <div class="card green">
-        <h4>Payout Sent</h4>
-        <p id="payout-detail"></p>
-      </div>
-
-      <button onclick="showSection('dashboard')">Back to Dashboard</button>
-    </section>
-
+    </div>
   </div>
 
-  <footer>
-    <p>GigShield Sentinel — Guidewire DEVTrails University Hackathon 2026 — Phase 1 Prototype</p>
-  </footer>
+  <!-- HOW IT WORKS -->
+  <div id="page-how" style="display:none" class="section-wrap">
+    <div class="sec-header">
+      <h2>How ParaProtect Works</h2>
+      <p>From registration to payout — fully automated, zero paperwork.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-box">
+        <div class="sn">01</div>
+        <h3>Register</h3>
+        <p>Enter your platform, city, and weekly income. Your UPI ID is your payout channel. Done in under 5 minutes.</p>
+      </div>
+      <div class="sarrow">→</div>
+      <div class="step-box">
+        <div class="sn">02</div>
+        <h3>AI Premium</h3>
+        <p>Our ML model sets your weekly premium using your income, city risk score, platform type, and hyper-local weather history.</p>
+      </div>
+      <div class="sarrow">→</div>
+      <div class="step-box">
+        <div class="sn">03</div>
+        <h3>24/7 Monitoring</h3>
+        <p>We watch IMD weather feeds, CPCB pollution data, government shutdown alerts, and satellite flood data around the clock.</p>
+      </div>
+      <div class="sarrow">→</div>
+      <div class="step-box">
+        <div class="sn">04</div>
+        <h3>Auto Payout</h3>
+        <p>Trigger validated. Claim generated. Money in your UPI account. You receive an SMS. You did nothing.</p>
+      </div>
+    </div>
+    <div class="triggers-wrap">
+      <div class="sec-header" style="margin-top:64px">
+        <h2>5 Automated Triggers</h2>
+        <p>Each trigger is validated across multiple independent public APIs before any payout is made.</p>
+      </div>
+      <div class="tgrid">
+        <div class="tbox">
+          <div class="ticon">&#9928;</div>
+          <h4>Extreme Rainfall & Cyclone</h4>
+          <p>Rainfall &gt; 60mm/hr or wind &gt; 80km/hr</p>
+          <div class="tsource">IMD API + OpenWeatherMap</div>
+        </div>
+        <div class="tbox">
+          <div class="ticon">&#9729;</div>
+          <h4>Severe Air Pollution</h4>
+          <p>AQI &gt; 400 sustained for 6+ hours</p>
+          <div class="tsource">CPCB AQI API + State Boards</div>
+        </div>
+        <div class="tbox">
+          <div class="ticon">&#128683;</div>
+          <h4>Government Shutdown</h4>
+          <p>Confirmed bandh or curfew order</p>
+          <div class="tsource">State Govt Feed + NLP News Scan</div>
+        </div>
+        <div class="tbox">
+          <div class="ticon">&#127754;</div>
+          <h4>Flooding</h4>
+          <p>Flood alert Level 3 or above</p>
+          <div class="tsource">IMD Flood Alerts + Satellite</div>
+        </div>
+        <div class="tbox">
+          <div class="ticon">&#9728;</div>
+          <h4>Heatwave</h4>
+          <p>Temperature &gt; 45°C for 2+ consecutive days</p>
+          <div class="tsource">IMD API + Regional Stations</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:48px">
+      <button class="btn-p" onclick="showPage('register')">Get Protected Now</button>
+    </div>
+  </div>
 
-  <script src="script.js"></script>
+  <!-- FEATURES -->
+  <div class="features-wrap">
+    <div class="feat-grid">
+      <div class="feat-box">
+        <div class="feat-icon">&#128200;</div>
+        <h4>Dynamic ML Premium</h4>
+        <p>Weekly premiums adjust based on hyper-local risk — zone flood history, seasonal patterns, and platform type.</p>
+      </div>
+      <div class="feat-box">
+        <div class="feat-icon">&#128737;</div>
+        <h4>Sentinel Anti-Fraud</h4>
+        <p>GPS spoofing caught via network tower triangulation, platform session data, and behavioural analysis.</p>
+      </div>
+      <div class="feat-box">
+        <div class="feat-icon">&#9889;</div>
+        <h4>Zero-Touch Claims</h4>
+        <p>No forms. No calls. No waiting. Trigger validated → claim generated → UPI payout. Fully automatic.</p>
+      </div>
+      <div class="feat-box">
+        <div class="feat-icon">&#128179;</div>
+        <h4>Weekly Billing</h4>
+        <p>Premiums billed weekly to match how gig workers earn. Cancel any week. Resume any week.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ REGISTER ═══════════════ -->
+<div id="page-register" class="page hidden">
+  <div class="page-wrap">
+    <div class="page-hdr">
+      <h2>Register for ParaProtect</h2>
+      <p>Takes less than 5 minutes. No documents required.</p>
+    </div>
+    <div class="form-card">
+      <div class="form-section-label">Personal Details</div>
+      <div class="fgrid">
+        <div class="fg">
+          <label>Full Name</label>
+          <input type="text" id="r-name" placeholder="Your full name"/>
+        </div>
+        <div class="fg">
+          <label>Mobile Number</label>
+          <input type="text" id="r-mobile" placeholder="10-digit mobile number"/>
+        </div>
+        <div class="fg">
+          <label>UPI ID</label>
+          <input type="text" id="r-upi" placeholder="name@upi"/>
+        </div>
+        <div class="fg">
+          <label>Aadhaar (last 4 digits)</label>
+          <input type="text" id="r-aadhaar" placeholder="XXXX" maxlength="4"/>
+        </div>
+      </div>
+
+      <div class="form-section-label" style="margin-top:28px">Work Details</div>
+      <div class="fgrid">
+        <div class="fg">
+          <label>Delivery Platform</label>
+          <select id="r-platform">
+            <option value="">Select platform</option>
+            <option value="Zomato">Zomato</option>
+            <option value="Swiggy">Swiggy</option>
+            <option value="Zepto">Zepto</option>
+            <option value="Amazon">Amazon</option>
+            <option value="Dunzo">Dunzo</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>City</label>
+          <select id="r-city">
+            <option value="">Select city</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Hyderabad">Hyderabad</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Delivery Zone</label>
+          <select id="r-zone">
+            <option value="">Select zone</option>
+            <option value="North">North</option>
+            <option value="South">South</option>
+            <option value="East">East</option>
+            <option value="West">West</option>
+            <option value="Central">Central</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Vehicle Type</label>
+          <select id="r-vehicle">
+            <option value="">Select vehicle</option>
+            <option value="Bicycle">Bicycle</option>
+            <option value="Motorbike">Motorbike</option>
+            <option value="Scooter">Scooter</option>
+            <option value="E-Bike">E-Bike</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Average Weekly Income (₹)</label>
+          <input type="number" id="r-income" placeholder="e.g. 4500"/>
+        </div>
+        <div class="fg">
+          <label>Working Days per Week</label>
+          <select id="r-days">
+            <option value="">Select days</option>
+            <option value="3">3 days</option>
+            <option value="4">4 days</option>
+            <option value="5">5 days</option>
+            <option value="6">6 days</option>
+            <option value="7">7 days</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="consent-box">
+        <input type="checkbox" id="r-consent"/>
+        <label for="r-consent">I agree to the ParaProtect terms. I understand my premium is collected weekly via UPI auto-debit and payouts are based on validated trigger events only.</label>
+      </div>
+
+      <button class="btn-p full" onclick="registerWorker()">Calculate Premium & Register</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PREMIUM QUOTE ═══════════════ -->
+<div id="page-premium" class="page hidden">
+  <div class="page-wrap">
+    <div class="page-hdr">
+      <h2>Your Premium Quote</h2>
+      <p>AI-calculated using your income, zone risk score, and hyper-local risk factors.</p>
+    </div>
+    <div class="premium-layout">
+      <div class="premium-left">
+        <div class="premium-hero-card">
+          <div class="phc-label">Your Weekly Premium</div>
+          <div class="phc-amount" id="q-amount"></div>
+          <div class="phc-sub" id="q-pct"></div>
+        </div>
+        <div class="info-block">
+          <div class="ib-label">Worker Summary</div>
+          <p id="q-summary"></p>
+        </div>
+        <div class="info-block blue">
+          <div class="ib-label">Coverage</div>
+          <p id="q-coverage"></p>
+        </div>
+        <div class="info-block green">
+          <div class="ib-label">ML Adjustment Applied</div>
+          <p id="q-ml"></p>
+        </div>
+        <div class="info-block">
+          <div class="ib-label">Events Covered</div>
+          <p>Cyclone &amp; extreme rainfall — Severe air pollution — Government shutdowns — Flooding — Heatwaves</p>
+        </div>
+        <button class="btn-p full" onclick="activatePolicy()">Confirm & Activate Policy</button>
+      </div>
+      <div class="premium-right">
+        <div class="side-card">
+          <div class="sc-label">City Risk Profile</div>
+          <div id="q-risk-meter"></div>
+        </div>
+        <div class="side-card">
+          <div class="sc-label">Premium Breakdown</div>
+          <div id="q-breakdown"></div>
+        </div>
+        <div class="side-card">
+          <div class="sc-label">Zone Flood History</div>
+          <div id="q-zone-history"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ DASHBOARD ═══════════════ -->
+<div id="page-dashboard" class="page hidden">
+  <div class="page-wrap wide">
+
+    <div class="page-hdr">
+      <h2>Policy Dashboard</h2>
+      <p id="dash-welcome"></p>
+    </div>
+
+    <!-- STAT ROW -->
+    <div class="stat-row" id="dash-stats"></div>
+
+    <!-- TABS -->
+    <div class="tab-bar">
+      <button class="tab active" onclick="switchTab('tab-policy')">Policy Management</button>
+      <button class="tab" onclick="switchTab('tab-triggers')">Trigger Monitor</button>
+      <button class="tab" onclick="switchTab('tab-claims')">Claims Management</button>
+      <button class="tab" onclick="switchTab('tab-premium')">Premium History</button>
+    </div>
+
+    <!-- TAB: POLICY -->
+    <div id="tab-policy" class="tab-content">
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-hdr">Policy Details</div>
+          <div id="policy-details"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-hdr">Sentinel Defense Status</div>
+          <div class="sentinel-rows">
+            <div class="srow active"><span>GPS Verification</span><span class="sbadge green">Active</span></div>
+            <div class="srow active"><span>Network Tower Cross-Check</span><span class="sbadge green">Active</span></div>
+            <div class="srow active"><span>Platform Session Validation</span><span class="sbadge green">Active</span></div>
+            <div class="srow active"><span>Behavioural Pattern Analysis</span><span class="sbadge green">Active</span></div>
+            <div class="srow active"><span>Coordinated Ring Detection</span><span class="sbadge green">Active</span></div>
+            <div class="srow"><span>Current Fraud Risk Score</span><span class="sbadge accent">Low</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:16px">
+        <div class="panel-hdr">Policy Actions</div>
+        <div class="action-row">
+          <button class="btn-outline" onclick="pausePolicy()">Pause Policy</button>
+          <button class="btn-outline" onclick="upgradePolicy()">Upgrade Coverage</button>
+          <button class="btn-outline red" onclick="cancelPolicy()">Cancel Policy</button>
+        </div>
+        <div id="action-msg" class="action-msg"></div>
+      </div>
+    </div>
+
+    <!-- TAB: TRIGGERS -->
+    <div id="tab-triggers" class="tab-content hidden">
+      <div class="panel">
+        <div class="panel-hdr">
+          Live Trigger Monitor
+          <span class="live-pill"><span class="ldot"></span>Live</span>
+        </div>
+        <p class="panel-sub" id="trigger-city-msg"></p>
+        <div class="trigger-cards" id="trigger-cards"></div>
+        <button class="btn-p" style="margin-top:24px; max-width:260px" onclick="simulateTrigger()">Simulate Trigger Event</button>
+      </div>
+    </div>
+
+    <!-- TAB: CLAIMS -->
+    <div id="tab-claims" class="tab-content hidden">
+      <div class="panel">
+        <div class="panel-hdr">Claims Management</div>
+        <div id="claims-list">
+          <div class="empty-state">No claims yet. ParaProtect is actively monitoring your city. When a trigger event is validated, a claim will be generated automatically and will appear here.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: PREMIUM HISTORY -->
+    <div id="tab-premium" class="tab-content hidden">
+      <div class="panel">
+        <div class="panel-hdr">Premium History & ML Adjustments</div>
+        <div id="premium-history-table"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ PROCESSING ═══════════════ -->
+<div id="page-processing" class="page hidden">
+  <div class="processing-center">
+    <div class="proc-ring"></div>
+    <h2 id="proc-title">Trigger Detected</h2>
+    <p class="proc-city" id="proc-city"></p>
+    <div class="proc-log" id="proc-log"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ CLAIM RESULT ═══════════════ -->
+<div id="page-claim" class="page hidden">
+  <div class="page-wrap">
+    <div class="page-hdr">
+      <h2>Claim Approved & Paid</h2>
+      <p>Zero-touch process completed. No action was required from you.</p>
+    </div>
+    <div class="claim-grid">
+      <div class="claim-panel green">
+        <div class="cp-hdr">Trigger Validated</div>
+        <p id="cp-trigger"></p>
+      </div>
+      <div class="claim-panel">
+        <div class="cp-hdr">Sentinel Fraud Check — Passed</div>
+        <p id="cp-fraud"></p>
+      </div>
+      <div class="claim-panel">
+        <div class="cp-hdr">Claim Breakdown</div>
+        <p id="cp-breakdown"></p>
+      </div>
+      <div class="claim-panel accent-border">
+        <div class="cp-hdr">Payout Sent</div>
+        <div class="payout-big" id="cp-payout-amount"></div>
+        <p id="cp-payout-detail"></p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:32px">
+      <button class="btn-p" onclick="showPage('dashboard'); switchTab('tab-claims')">View in Claims Management</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><span class="l1">Para</span><span class="l2">Protect</span> <span class="ltag">by GigShield Sentinel</span></div>
+    <span class="footer-copy">Guidewire DEVTrails University Hackathon 2026 — Phase 2 Prototype</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
